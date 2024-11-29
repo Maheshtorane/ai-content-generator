@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import  {ClerkProvider} from "@clerk/nextjs";
+import {Inter, Outfit} from "next/font/google";
+
+const inter =Outfit({subsets: ["latin"]});
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,12 +28,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+  <ClerkProvider> 
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+       className={inter.className}>{children}
       </body>
     </html>
+  </ClerkProvider>
   );
 }
